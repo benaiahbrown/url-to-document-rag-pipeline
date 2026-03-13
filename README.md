@@ -22,6 +22,9 @@ flowchart TD
     H[Scheduled Trigger\nEvery 3 days] --> I[Duplicate Cleanup\nDedup query + audit log]
 ```
 
+<!-- SCREENSHOT: Add screenshot of the n8n workflow canvas showing the full pipeline -->
+![Workflow Overview](assets/screenshot-workflow-overview.png)
+
 ## What It Does
 
 This pipeline processes a queue of URLs and produces structured, searchable documents for a RAG system. It fetches unprocessed URLs from Supabase, crawls each page via Crawl4AI for markdown conversion, cleans the output, then runs two LLM agents — one to extract metadata (title, summary, effective date, key terms) and another to classify documents using an environmental compliance taxonomy. A separate sub-workflow deduplicates the queue on a 3-day schedule.
@@ -37,8 +40,8 @@ This pipeline processes a queue of URLs and produces structured, searchable docu
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/benaiahbrown/URL-to-document_RAG_pipeline.git
-   cd URL-to-document_RAG_pipeline
+   git clone https://github.com/benaiahbrown/url-to-document-rag-pipeline.git
+   cd url-to-document-rag-pipeline
    ```
 2. Import `URL_to_Document.json` into your n8n instance (Settings → Import Workflow)
 3. Copy `.env.example` to `.env` and fill in your credentials
@@ -71,6 +74,9 @@ Copy `.env.example` to `.env` and provide the following values:
 | `duplicate_cleanup_log` | Audit log for the deduplication sub-workflow |
 
 ## Usage Examples
+
+<!-- SCREENSHOT: Add screenshot of processed document output in Supabase -->
+![Processed Output](assets/screenshot-processed-output.png)
 
 Add a URL to the queue in Supabase:
 
